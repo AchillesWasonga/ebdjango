@@ -1,0 +1,12 @@
+# Exclude virtual environments
+eb-virt/
+venv/
+env/
+
+# Exclude version control directories
+.git/
+.gitignore
+
+# Optionally exclude other local files
+*.pyc
+__pycache__/
