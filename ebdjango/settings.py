@@ -11,9 +11,12 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +28,12 @@ SECRET_KEY = 'skr_s5kf5$l10=)!$$g=s!(ga@efg-nfy2kaejt5@&ue-s+zvx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['eb-django-app-dev.elasticbeanstalk.com']
+ALLOWED_HOSTS = [
+    '.elasticbeanstalk.com',  # allows any subdomain of elasticbeanstalk.com
+    '127.0.0.1',
+    'localhost',
+]
+
 
 
 # Application definition
@@ -66,6 +74,25 @@ TEMPLATES = [
         },
     },
 ]
+
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # Point 'DIRS' to the templates folder
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
 
 WSGI_APPLICATION = 'ebdjango.wsgi.application'
 
