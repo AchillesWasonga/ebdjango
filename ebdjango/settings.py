@@ -32,6 +32,8 @@ ALLOWED_HOSTS = [
     '.elasticbeanstalk.com',  # allows any subdomain of elasticbeanstalk.com
     '127.0.0.1',
     'localhost',
+    'sifanuts.com',
+    'www.sifanuts.com',
 ]
 
 
